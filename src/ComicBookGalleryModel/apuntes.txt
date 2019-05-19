@@ -1,0 +1,35 @@
+1) habilitar migrations
+
+consola de comandos package
+
+> enable-migrations
+
+2) Add a migration
+
+> Add-Migration <nombre deseado que identifique la migracion>
+
+para volver a generar el mismo migration se usa la bandera -force asi:
+
+> Add-Migration <nombre deseado que identifique la migracion> -force
+
+3) update the database
+
+consola nuget
+
+>update-database
+
+NOTA: cuando se ejecuta el comando update-database se ejecutara cualquier migration que este en el proyecto que no esté en la tabla _MigrationHistory de la base de datos.
+
+4) Para hacer un downgrade en la base de datos se ejecuta el siguiente comando:
+
+update-database -targetmigration <nombre del migration al cual queremos devolvernos>
+
+5) para restaurar la base de datos a su estado inicial(sin migrations) se correo el siguiente comando:
+
+update-database -targetmigration $InitialDatabase
+
+6) con la base de datos en un estado inicial(si migrations) se pueden correr todos los migration que existen en nuestro proyecto simplemente ejecutando "update-database"
+
+7) para generar el script de la actualización de la base de datos se ejecuta el siguiente comando: update-database -script
+
+8) Update database -script -sourcemigration $initialDatabase.
